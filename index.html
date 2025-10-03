@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frockline - Coming December 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comorant+Garamond:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink-light: #F8D7D7;
+            --pink-dark: #F4C2C2;
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gold: #d4af37;
+            --gray: #f5f5f5;
+            --text: #0a0a0a;
+        }
+
+        body {
+            font-family: 'Garamond', 'Times New Roman', serif;
+            color: var(--text);
+            background: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Comorant Garamond', 'Garamond', serif;
+            font-weight: 600;
+            font-size: 2rem; /* Adjust as needed */
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--pink-light) 0%, var(--pink-dark) 100%);
+            position: relative;
+            padding: 100px 20px 0;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            color: var(--black);
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .video-container {
+           width: 100%;
+           max-width: 600px;
+           margin: 2rem auto;
+           position: relative;
+           overflow: hidden;
+           border: 3px solid var(--gold);
+           box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+           transition: transform 0.3s ease, box-shadow 0.3s ease;
+       }
+
+         /* 16:9 Aspect Ratio Magic */
+       .video-container::before {
+           content: "";
+           display: block;
+           padding-top: 56.25%; /* 9 ÷ 16 = 0.5625 → 56.25% */
+        }
+
+        .video-placeholder,
+        .video-element {
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+        }       
+
+       .video-element {
+           object-fit: cover; /* Ensures video fills container without distortion */
+           display: none;
+        }
+
+        /* Parallax Elements */
+        .parallax-element {
+            position: absolute;
+            z-index: 1;
+        }
+
+        .parallax-1 {
+            top: 20%;
+            left: 10%;
+            font-size: 3rem;
+            opacity: 0.1;
+            animation: float 15s infinite linear;
+        }
+
+        .parallax-2 {
+            bottom: 15%;
+            right: 10%;
+            font-size: 2.5rem;
+            opacity: 0.1;
+            animation: float 18s infinite linear reverse;
+        }
+
+        .parallax-3 {
+            top: 40%;
+            right: 20%;
+            font-size: 2rem;
+            opacity: 0.08;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        /* Form Section */
+        .signup-section {
+            padding: 6rem 0;
+            background: var(--black);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signup-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, rgba(10,10,10,0.8) 70%);
+            z-index: 1;
+        }
+
+        .signup-form {
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .signup-form h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            color: var(--gold);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            border: 1px solid var(--gold);
+            background: transparent;
+            color: var(--white);
+            font-family: 'Garamond', serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--pink-light);
+            background: rgba(244, 194, 194, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            cursor: pointer;
+            font-family: 'Garamond', serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--pink-light);
+            transform: translateY(-2px);
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold);
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            color: var(--gold);
+        }
+
+        /* Manifesto Section */
+        .manifesto {
+            padding: 6rem 0;
+            text-align: center;
+            background: var(--pink-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .manifesto p {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-style: italic;
+            color: var(--black);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+        }
+
+        .manifesto::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 Q50,20 100,0 L100,100 Q50,80 0,100 Z" fill="rgba(212,175,55,0.05)"/></svg>');
+            background-size: cover;
+            z-index: 1;
+        }
+
+        .manifesto-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Countdown Section */
+        .countdown-section {
+            padding: 4rem 0;
+            background: var(--black);
+            text-align: center;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            min-width: 120px;
+            border: 1px solid var(--gold);
+            transition: transform 0.3s ease;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-10px);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .countdown-number {
+            font-size: 3rem;
+            color: var(--gold);
+            display: block;
+            font-weight: 400;
+        }
+
+        .countdown-label {
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Details Section */
+        .details {
+            padding: 4rem 0;
+            text-align: center;
+            background: var(--pink-light);
+        }
+
+        .details h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--black);
+            font-weight: 400;
+        }
+
+        .details p {
+            font-size: 1.2rem;
+            color: var(--black);
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0 2rem;
+            background: var(--black);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.8rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+        }
+
+        .social-links a:hover {
+            color: var(--gold);
+            transform: translateY(-5px);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        .animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero h1 {
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .countdown {
+                gap: 1rem;
+            }
+            
+            .countdown-item {
+                min-width: 80px;
+                padding: 1.5rem;
+            }
+            
+            .countdown-number {
+                font-size: 2rem;
+            }
+            
+            .video-container {
+                height: 250px;
+            }
+            
+            .parallax-element {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">FROCKLINE</div>
+            <nav class="nav-links">
+                <a href="#manifesto">Manifesto</a>
+                <a href="#countdown">Launch</a>
+                <a href="#details">Details</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="parallax-element parallax-1">✦</div>
+        <div class="parallax-element parallax-2">✧</div>
+        <div class="parallax-element parallax-3">✦</div>
+        
+        <div class="container">
+            <h1 class="animate">She doesn't wear clothes. She wears presence.</h1>
+            <div class="video-container">
+                <div class="video-placeholder">
+                    <video class="video-element" autoplay muted loop>
+                        <source src="/content/vid.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-overlay">Loading Video...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signup Form Section -->
+    <section class="signup-section">
+        <div class="container">
+            <div class="signup-form">
+                <h2 class="animate">Be First</h2>
+                <form id="earlyAccessForm" class="animate">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="contact" name="contact" placeholder="Email or Phone" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Request Early Access</button>
+                </form>
+                <div class="success-message" id="successMessage">
+                    You're in. Watch your inbox.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manifesto Section -->
+    <section class="manifesto" id="manifesto">
+        <div class="container">
+            <div class="manifesto-content">
+                <p class="animate">Crafted for movement. Styled for myth. Worn by women who lead with softness.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="countdown-section" id="countdown">
+        <div class="container">
+            <div class="countdown animate">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Details Section -->
+    <section class="details" id="details">
+        <div class="container">
+            <h3 class="animate">Launching December 2025</h3>
+            <p class="animate">Designed in Sri Lanka. Styled for everywhere.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="#" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+            </div>
+            <p class="copyright">© 2025 Frockline. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const launchDate = new Date('December 1, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Form Submission
+        document.getElementById('earlyAccessForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const contact = document.getElementById('contact').value;
+            
+            // Construct Google Form URL with prefilled data
+            const formUrl = `https://docs.google.com/forms/d/e/1FAIpQLSdkH-GztNsRR7EkJYxZD1MYdZjyyqwAy4K6ototDEyPjlVHlw/formResponse?usp=pp_url&entry.2113822548=${encodeURIComponent(name)}&entry.185408629=${encodeURIComponent(contact)}`;
+            
+            // Submit to Google Form via iframe to prevent redirect
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = formUrl;
+            document.body.appendChild(iframe);
+            
+            // Show success message
+            document.getElementById('earlyAccessForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Remove iframe after submission
+            setTimeout(() => {
+                document.body.removeChild(iframe);
+            }, 3000);
+        });
+
+        // Scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.padding = '0.8rem 0';
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.padding = '1.5rem 0';
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Initialize scroll animations
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // Video placeholder handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoPlaceholder = document.querySelector('.video-placeholder');
+            const videoElement = document.querySelector('.video-element');
+            const videoOverlay = document.querySelector('.video-overlay');
+            
+            // Simulate video loading
+            setTimeout(() => {
+                videoOverlay.style.display = 'none';
+                videoElement.style.display = 'block';
+                videoElement.play();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
